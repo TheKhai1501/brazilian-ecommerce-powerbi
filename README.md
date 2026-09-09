@@ -105,23 +105,19 @@ A star-schema-style model was built with the following relationships:
 - A dedicated `DateTable` (calendar table) drives all time-intelligence calculations, joined on a **date-only** column (timestamps were truncated to avoid relationship mismatches caused by time-of-day precision)
 
 ---
+## 📐 Key Metrics (DAX Measures)
 
-## Key Metrics (DAX Measures)
+25+ custom DAX measures were built, organized into 6 categories: Sales KPIs, Customer KPIs, 
+Product Analytics, Review & Logistics KPIs, Payment KPIs, and Time Intelligence.
 
-Sample of core measures built (25+ total, organized into 6 display folders: Sales KPIs, Customer KPIs, Product Analytics, Review & Logistics KPIs, Payment KPIs, Time Intelligence):
+📄 **[View full list of DAX measures →](docs/DAX_measures.md)**
 
-```dax
-Total Revenue = SUMX(order_items, order_items[price] + order_items[freight_value])
+**Highlight measure** — the one driving the project's core insight:
 
-On-Time Delivery % = 
-VAR OnTime = CALCULATE(COUNTROWS(orders), orders[order_delivered_customer_date] <= orders[order_estimated_delivery_date])
-RETURN DIVIDE(OnTime, [Delivered Orders])
-
+\`\`\`dax
 Avg Review Score - Late Delivery = 
-CALCULATE([Average Review Score], orders[order_delivered_customer_date] > orders[order_estimated_delivery_date])
-
-Repeat Customer Rate = DIVIDE([Repeat Customers], [Total Unique Customers])
-```
+CALCULATE([Average Review Score], olist_orders_dataset[order_delivered_customer_date] > olist_orders_dataset[order_estimated_delivery_date])
+\`\`\`
 
 ---
 
