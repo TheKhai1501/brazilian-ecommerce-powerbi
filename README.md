@@ -139,7 +139,7 @@ Category-level performance, price-vs-satisfaction analysis, and top-selling prod
 ### 4️⃣ Customer Behavior & Payments
 Customer acquisition/retention metrics, payment method mix, and installment plan analysis.
 
-![Business Overview](screenshots/01_overview.png)
+![Business Overview](01_overview.png)
 ![Delivery Performance](screenshots/02_delivery.png)
 ![Product Deep Dive](screenshots/03_products.png)
 ![Customer Behavior](screenshots/04_customers.png)
