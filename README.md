@@ -8,8 +8,6 @@ An end-to-end business intelligence project analyzing 100K+ orders from Olist, B
 
 ** [View Live Interactive Dashboard](https://app.powerbi.com/view?r=eyJrIjoiN2UwOWIyZjMtZWEyNi00NjNlLWJjZjctOWMwM2Q0MTE1NDliIiwidCI6ImFmMWYzNzUzLTM5MjUtNGU2Zi05NDliLTk3YzAwNzMyMDgwMyIsImMiOjEwfQ%3D%3D)**
 
-> Replace the link above with your actual `app.powerbi.com` published report link.
-
 ---
 
 ## Table of Contents
@@ -93,7 +91,6 @@ All cleaning was performed in Power Query before modeling. Key steps:
 ## Data Model
 
 A star-schema-style model was built with the following relationships:
-## 🔗 Data Model
 
 <p align="center">
   <img src="data_model.png" width="900">
