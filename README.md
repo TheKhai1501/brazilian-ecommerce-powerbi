@@ -8,7 +8,7 @@ An interactive Power BI dashboard analyzing 100K+ Brazilian E-commerce (Olist) o
 
 An end-to-end business intelligence project analyzing 100K+ orders from Olist, Brazil's largest department store marketplace, to answer three core business questions: **Which products drive the most revenue? How well is our delivery operation performing? Who are our customers, and are we retaining them?**
 
-**[View Live Interactive Dashboard](PASTE_YOUR_APP.POWERBI.COM_LINK_HERE)**
+** [View Live Interactive Dashboard](https://app.powerbi.com/view?r=eyJrIjoiN2UwOWIyZjMtZWEyNi00NjNlLWJjZjctOWMwM2Q0MTE1NDliIiwidCI6ImFmMWYzNzUzLTM5MjUtNGU2Zi05NDliLTk3YzAwNzMyMDgwMyIsImMiOjEwfQ%3D%3D)**
 
 > Replace the link above with your actual `app.powerbi.com` published report link.
 
@@ -44,7 +44,7 @@ Olist connects small businesses across Brazil to major marketplaces, handling lo
 
 ## 🔗 Live Dashboard
 
-**[Click here to explore the interactive Power BI dashboard](PASTE_YOUR_APP.POWERBI.COM_LINK_HERE)**
+** [CLICK HERE TO EXPLORE THE FULL INTERACTIVE DASHBOARD](https://app.powerbi.com/view?r=eyJrIjoiN2UwOWIyZjMtZWEyNi00NjNlLWJjZjctOWMwM2Q0MTE1NDliIiwidCI6ImFmMWYzNzUzLTM5MjUtNGU2Zi05NDliLTk3YzAwNzMyMDgwMyIsImMiOjEwfQ%3D%3D)**
 
 The published report includes 4 fully interactive pages with cross-filtering slicers (Year, Region, Product Category, Payment Type) synchronized across all pages.
 
