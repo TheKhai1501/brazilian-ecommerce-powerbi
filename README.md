@@ -1,2 +1,182 @@
 # brazilian-ecommerce-powerbi
 An interactive Power BI dashboard analyzing 100K+ Brazilian E-commerce (Olist) orders to uncover logistics bottlenecks, payment trends, and retention metrics.
+# Brazilian E-Commerce Performance Dashboard (Olist)
+
+![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
+![DAX](https://img.shields.io/badge/DAX-217346?style=for-the-badge&logo=microsoft&logoColor=white)
+![Power Query](https://img.shields.io/badge/Power%20Query-107C10?style=for-the-badge&logo=microsoft&logoColor=white)
+
+An end-to-end business intelligence project analyzing 100K+ orders from Olist, Brazil's largest department store marketplace, to answer three core business questions: **Which products drive the most revenue? How well is our delivery operation performing? Who are our customers, and are we retaining them?**
+
+**[View Live Interactive Dashboard](PASTE_YOUR_APP.POWERBI.COM_LINK_HERE)**
+
+> Replace the link above with your actual `app.powerbi.com` published report link.
+
+---
+
+## Table of Contents
+
+- [Overview](#-overview)
+- [Live Dashboard](#-live-dashboard)
+- [Dataset](#-dataset)
+- [Tools & Skills Used](#-tools--skills-used)
+- [Data Cleaning & Transformation](#-data-cleaning--transformation)
+- [Data Model](#-data-model)
+- [Key Metrics (DAX Measures)](#-key-metrics-dax-measures)
+- [Dashboard Pages](#-dashboard-pages)
+- [Key Insights](#-key-insights)
+- [Challenges & Solutions](#-challenges--solutions)
+- [How to Reproduce](#-how-to-reproduce)
+- [Contact](#-contact)
+
+---
+
+## Overview
+
+Olist connects small businesses across Brazil to major marketplaces, handling logistics through its own partner network. This project simulates a real-world analytics engagement: taking nine raw, disconnected CSV exports and turning them into a decision-ready BI product for stakeholders across Sales, Logistics, and Customer Experience teams.
+
+**Business questions this dashboard answers:**
+1. How is revenue trending, and which product categories drive it?
+2. Is our delivery operation meeting customer expectations, and does it affect satisfaction?
+3. Who are our customers, how do they pay, and are we earning repeat business?
+
+---
+
+## 🔗 Live Dashboard
+
+**[Click here to explore the interactive Power BI dashboard](PASTE_YOUR_APP.POWERBI.COM_LINK_HERE)**
+
+The published report includes 4 fully interactive pages with cross-filtering slicers (Year, Region, Product Category, Payment Type) synchronized across all pages.
+
+---
+
+## Dataset
+
+**Source:** [Brazilian E-Commerce Public Dataset by Olist — Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+
+| Table | Rows | Description |
+|---|---|---|
+| `olist_orders_dataset` | 99,441 | Order status and timestamps |
+| `olist_order_items_dataset` | 112,650 | Line items, price, freight |
+| `olist_order_payments_dataset` | 103,886 | Payment method and installments |
+| `olist_order_reviews_dataset` | 99,224 | Customer review scores and comments |
+| `olist_customers_dataset` | 99,441 | Customer location data |
+| `olist_products_dataset` | 32,951 | Product category and dimensions |
+| `olist_sellers_dataset` | 3,095 | Seller location data |
+| `olist_geolocation_dataset` | 1,000,163 | Zip code to lat/lng mapping |
+| `product_category_name_translation` | 71 | Portuguese → English category names |
+
+**Time period covered:** September 2016 – October 2018
+
+---
+
+## Tools & Skills Used
+
+- **Power Query (M)** — data cleaning, transformation, deduplication
+- **Power BI Data Modeling** — star-schema relationships, handling ambiguous filter paths
+- **DAX** — 25+ custom measures across Sales, Delivery, Customer, and Payment KPIs
+- **Power BI Desktop Service** — interactive report design, synchronized slicers, publishing
+
+---
+
+## Data Cleaning & Transformation
+
+All cleaning was performed in Power Query before modeling. Key steps:
+
+- **Deduplicated geolocation data**: reduced 1,000,163 rows to ~19,000 by grouping on zip code prefix and averaging latitude/longitude, preventing relationship fan-out.
+- **Resolved duplicate review records**: 547 orders had 2–3 review entries; sorted by `review_answer_timestamp` descending and removed duplicates to enforce a clean 1:1 order-to-review relationship (98,673 unique order reviews retained).
+- **Handled missing product categories**: 610 products (1.9%) had a blank `product_category_name`; replaced with `"outros"` (others) rather than dropped, preserving revenue and item-count integrity.
+- **Fixed category translation mismatches**: 3 category names (`outros`, `portateis_cozinha_e_preparadores_de_alimentos`, `pc_gamer`) had no match in the official translation table, causing 623 blank English category labels after the merge — resolved with a conditional mapping column.
+- **Standardized data types**: enforced Text type on all zip code and ID columns to preserve leading zeros; converted timestamp columns to proper Date/Time types.
+- **Preserved legitimate nulls**: order approval/delivery date nulls (reflecting canceled/undelivered orders) were intentionally kept rather than imputed, to avoid distorting delivery-time calculations.
+
+---
+
+## Data Model
+
+A star-schema-style model was built with the following relationships:
+
+- `orders` (1) → (∞) `order_items`, `order_payments`, `order_reviews`
+- `products` (1) → (∞) `order_items`
+- `sellers` (1) → (∞) `order_items`
+- `customers` (1) → (∞) `orders`
+- `product_category_name_translation` (1) → (∞) `products`
+- `customers`/`sellers` zip code → `geolocation` (one relationship kept **inactive** to resolve an ambiguous filter path, activated on demand via `USERELATIONSHIP()`)
+- A dedicated `DateTable` (calendar table) drives all time-intelligence calculations, joined on a **date-only** column (timestamps were truncated to avoid relationship mismatches caused by time-of-day precision)
+
+---
+
+## Key Metrics (DAX Measures)
+
+Sample of core measures built (25+ total, organized into 6 display folders: Sales KPIs, Customer KPIs, Product Analytics, Review & Logistics KPIs, Payment KPIs, Time Intelligence):
+
+```dax
+Total Revenue = SUMX(order_items, order_items[price] + order_items[freight_value])
+
+On-Time Delivery % = 
+VAR OnTime = CALCULATE(COUNTROWS(orders), orders[order_delivered_customer_date] <= orders[order_estimated_delivery_date])
+RETURN DIVIDE(OnTime, [Delivered Orders])
+
+Avg Review Score - Late Delivery = 
+CALCULATE([Average Review Score], orders[order_delivered_customer_date] > orders[order_estimated_delivery_date])
+
+Repeat Customer Rate = DIVIDE([Repeat Customers], [Total Unique Customers])
+```
+
+---
+
+## Dashboard Pages
+
+### 1️⃣ Business Overview
+Executive summary of revenue trends, top-performing categories, and geographic revenue distribution.
+
+### 2️⃣ Delivery Performance & Customer Satisfaction
+Deep dive into delivery timeliness and its direct link to customer review scores.
+
+### 3️⃣ Product & Category Deep Dive
+Category-level performance, price-vs-satisfaction analysis, and top-selling products.
+
+### 4️⃣ Customer Behavior & Payments
+Customer acquisition/retention metrics, payment method mix, and installment plan analysis.
+
+![Business Overview](screenshots/01_overview.png)
+![Delivery Performance](screenshots/02_delivery.png)
+![Product Deep Dive](screenshots/03_products.png)
+![Customer Behavior](screenshots/04_customers.png)
+
+---
+
+## Key Insights
+
+- **Delivery speed drives satisfaction, not just meets it.** Late deliveries correlate with a review score of **2.57/5**, compared to **4.21/5** for on-time orders — a ~39% drop, despite the company maintaining a strong **94.96% on-time delivery rate**.
+- **Retention is the weakest link in an otherwise healthy funnel.** Only **3.12% of customers** placed a second order, despite an average review score of 4.09/5 — suggesting satisfaction alone isn't converting into loyalty, a signal worth investigating with a CRM or loyalty program.
+- **Revenue is concentrated but not overly dependent on one category.** The top 10 of 70+ product categories (led by Health & Beauty) account for a meaningful share of the $15.8M total revenue, with no single category creating over-reliance risk.
+- **Credit card dominates payment behavior**, representing 78% of total transaction value, with an average of 2.85 installments per order — a hint that flexible payment terms matter to Brazilian consumers.
+- **Geographic risk exists in delivery performance.** States farther from the Southeast logistics hub (e.g., AL, MA, PI) show late-delivery rates several times higher than the national average — a candidate for regional carrier renegotiation.
+
+---
+
+## Challenges & Solutions
+
+| Challenge | Solution |
+|---|---|
+| Geolocation table had 26% duplicate rows, risking relationship fan-out | Grouped and averaged coordinates by zip code prefix before modeling |
+| Ambiguous filter path when connecting geolocation to both customers and sellers | Set one relationship inactive; activated selectively via `USERELATIONSHIP()` |
+| Revenue-by-time chart showed all data collapsing into a single "(Blank)" bucket | Diagnosed a Date vs. Date/Time type mismatch in the relationship key; created a date-only column to fix the join |
+| Category translation table was missing 3 real categories, causing blank labels | Built a conditional DAX column to map the missing categories manually |
+
+---
+
+## How to Reproduce
+
+1. Download the dataset from [Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+2. Open `powerbi/olist_dashboard.pbix` in Power BI Desktop
+3. Update the data source file paths under **Transform Data → Data Source Settings**
+4. Refresh the model
+
+---
+
+## Contact
+
+**Sẻ Thế Khải**
+📧 khaithe150106@gmail.com | 🔗 [GitHub](https://github.com/TheHung-253)
