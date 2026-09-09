@@ -93,7 +93,7 @@ All cleaning was performed in Power Query before modeling. Key steps:
 A star-schema-style model was built with the following relationships:
 
 <p align="center">
-  <img src="data_model.png" width="900">
+  <img src="IMAGES/data_model.png" width="900">
 </p>
 
 A star-schema-style model was built with the following relationships:
@@ -130,28 +130,28 @@ CALCULATE([Average Review Score], olist_orders_dataset[order_delivered_customer_
 ### 1️⃣ Business Overview
 Executive summary of revenue trends, top-performing categories, and geographic revenue distribution.
 <p align="center">
-  <img src="01_overview.png" width="800"><br>
+  <img src="IMAGES/01_overview.png" width="800"><br>
   <em>Business Overview</em>
 </p>
 
 ### 2️⃣ Delivery Performance & Customer Satisfaction
 Deep dive into delivery timeliness and its direct link to customer review scores.
 <p align="center">
-  <img src="02_delivery.png" width="800"><br>
+  <img src="IMAGES/02_delivery.png" width="800"><br>
   <em>Delivery Performance & Customer Satisfaction</em>
 </p>
 
 ### 3️⃣ Product & Category Deep Dive
 Category-level performance, price-vs-satisfaction analysis, and top-selling products.
 <p align="center">
-  <img src="03_products.png" width="800"><br>
+  <img src="IMAGES/03_products.png" width="800"><br>
   <em>Product & Category Deep Dive</em>
 </p>
 
 ### 4️⃣ Customer Behavior & Payments
 Customer acquisition/retention metrics, payment method mix, and installment plan analysis.
 <p align="center">
-  <img src="04_customers.png" width="800"><br>
+  <img src="IMAGES/04_customers.png" width="800"><br>
   <em>Customer Behavior & Payments</em>
 </p>
 
