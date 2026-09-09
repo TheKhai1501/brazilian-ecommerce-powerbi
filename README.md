@@ -129,20 +129,31 @@ Repeat Customer Rate = DIVIDE([Repeat Customers], [Total Unique Customers])
 
 ### 1️⃣ Business Overview
 Executive summary of revenue trends, top-performing categories, and geographic revenue distribution.
+<p align="center">
+  <img src="01_overview.png" width="800"><br>
+  <em>Business Overview</em>
+</p>
 
 ### 2️⃣ Delivery Performance & Customer Satisfaction
 Deep dive into delivery timeliness and its direct link to customer review scores.
+<p align="center">
+  <img src="02_delivery.png" width="800"><br>
+  <em>Delivery Performance & Customer Satisfaction</em>
+</p>
 
 ### 3️⃣ Product & Category Deep Dive
 Category-level performance, price-vs-satisfaction analysis, and top-selling products.
+<p align="center">
+  <img src="03_products.png" width="800"><br>
+  <em>Product & Category Deep Dive</em>
+</p>
 
 ### 4️⃣ Customer Behavior & Payments
 Customer acquisition/retention metrics, payment method mix, and installment plan analysis.
-
-![Business Overview](01_overview.png)
-![Delivery Performance](02_delivery.png)
-![Product Deep Dive](03_products.png)
-![Customer Behavior](04_customers.png)
+<p align="center">
+  <img src="04_customers.png" width="800"><br>
+  <em>Customer Behavior & Payments</em>
+</p>
 
 ---
 
