@@ -1,6 +1,4 @@
-# brazilian-ecommerce-powerbi
-An interactive Power BI dashboard analyzing 100K+ Brazilian E-commerce (Olist) orders to uncover logistics bottlenecks, payment trends, and retention metrics.
-# Brazilian E-Commerce Performance Dashboard (Olist)
+# Brazilian E-Commerce Performance Dashboard
 
 ![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
 ![DAX](https://img.shields.io/badge/DAX-217346?style=for-the-badge&logo=microsoft&logoColor=white)
