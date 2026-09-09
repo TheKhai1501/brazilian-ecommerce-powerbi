@@ -114,12 +114,12 @@ A star-schema-style model was built with the following relationships:
 - A dedicated `DateTable` (calendar table) drives all time-intelligence calculations, joined on a **date-only** column (timestamps were truncated to avoid relationship mismatches caused by time-of-day precision)
 
 ---
-## 📐 Key Metrics (DAX Measures)
+## Key Metrics (DAX Measures)
 
 25+ custom DAX measures were built, organized into 6 categories: Sales KPIs, Customer KPIs, 
 Product Analytics, Review & Logistics KPIs, Payment KPIs, and Time Intelligence.
 
-📄 **[View full list of DAX measures →](docs/DAX_measures.md)**
+**[View full list of DAX measures →](docs/DAX_measures.md)**
 
 **Highlight measure** — the one driving the project's core insight:
 
