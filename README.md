@@ -95,7 +95,16 @@ All cleaning was performed in Power Query before modeling. Key steps:
 ## Data Model
 
 A star-schema-style model was built with the following relationships:
+## 🔗 Data Model
 
+<p align="center">
+  <img src="data_model.png" width="900">
+</p>
+
+A star-schema-style model was built with the following relationships:
+
+- `orders` (1) → (∞) `order_items`, `order_payments`, `order_reviews`
+...
 - `orders` (1) → (∞) `order_items`, `order_payments`, `order_reviews`
 - `products` (1) → (∞) `order_items`
 - `sellers` (1) → (∞) `order_items`
