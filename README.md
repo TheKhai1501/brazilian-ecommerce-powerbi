@@ -96,17 +96,6 @@ A star-schema-style model was built with the following relationships:
   <img src="IMAGES/data_model.png" width="900">
 </p>
 
-A star-schema-style model was built with the following relationships:
-
-- `orders` (1) → (∞) `order_items`, `order_payments`, `order_reviews`
-...
-- `orders` (1) → (∞) `order_items`, `order_payments`, `order_reviews`
-- `products` (1) → (∞) `order_items`
-- `sellers` (1) → (∞) `order_items`
-- `customers` (1) → (∞) `orders`
-- `product_category_name_translation` (1) → (∞) `products`
-- `customers`/`sellers` zip code → `geolocation` (one relationship kept **inactive** to resolve an ambiguous filter path, activated on demand via `USERELATIONSHIP()`)
-- A dedicated `DateTable` (calendar table) drives all time-intelligence calculations, joined on a **date-only** column (timestamps were truncated to avoid relationship mismatches caused by time-of-day precision)
 
 ---
 ## Key Metrics (DAX Measures)
