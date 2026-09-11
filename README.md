@@ -12,15 +12,15 @@ An end-to-end business intelligence project analyzing 100K+ orders from Olist, B
 
 ## Table of Contents
 
-- [Overview](#-overview)
-- [Live Dashboard](#-live-dashboard)
+- [Overview](#-Overview)
+- [Live Dashboard](#-Live-Dashboard)
 - [Dataset](#-dataset)
 - [Tools & Skills Used](#-tools--skills-used)
 - [Data Cleaning & Transformation](#-data-cleaning--transformation)
 - [Data Model](#-data-model)
 - [Key Metrics (DAX Measures)](#-key-metrics-dax-measures)
 - [Dashboard Pages](#-dashboard-pages)
-- [Key Insights](#-key-insights)
+- [Key Insights](#-Key-Insights)
 - [Challenges & Solutions](#-challenges--solutions)
 - [How to Reproduce](#-how-to-reproduce)
 - [Contact](#-contact)
