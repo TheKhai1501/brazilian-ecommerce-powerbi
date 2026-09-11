@@ -23,7 +23,6 @@ An end-to-end business intelligence project analyzing 100K+ orders from Olist, B
 - [Key Insights](#-Key-Insights)
 - [Challenges & Solutions](#-challenges--solutions)
 - [How to Reproduce](#-how-to-reproduce)
-- [Contact](#-contact)
 
 ---
 
@@ -176,7 +175,5 @@ Customer acquisition/retention metrics, payment method mix, and installment plan
 
 ---
 
-## Contact
-
 **Sẻ Thế Khải**
-📧 khaithe150106@gmail.com | 🔗 [GitHub](https://github.com/TheKhai1501)
+
